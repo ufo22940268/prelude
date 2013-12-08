@@ -2,6 +2,7 @@
 
 (prelude-require-package 'yasnippet)
 
+
 (require 'yasnippet)
 (setq yas-snippet-dirs
       '("~/.emacs.d/personal/snippets"                 ;; personal snippets
