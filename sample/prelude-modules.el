@@ -23,4 +23,4 @@
 (require 'prelude-scheme)
 ;; (require 'prelude-scss)
 ;; (require 'prelude-web)
-(require 'prelude-xml)
+;; (require 'prelude-xml)

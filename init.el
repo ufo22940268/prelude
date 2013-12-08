@@ -114,3 +114,5 @@ by Prelude.")
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
 ;;; init.el ends here
+
+(setq buffer-save-without-query t)
