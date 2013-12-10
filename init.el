@@ -115,4 +115,4 @@ by Prelude.")
 
 ;;; init.el ends here
 
-(setq buffer-save-without-query t)
+

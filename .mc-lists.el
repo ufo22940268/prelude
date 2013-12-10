@@ -3,9 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        kill-sexp
         org-delete-char
         org-end-of-line
         org-force-self-insert
+        sp--self-insert-command
         toggle-input-method
         yas-expand
         ))

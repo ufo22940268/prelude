@@ -58,10 +58,6 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)                 ; optional
-
 (add-to-list 'load-path "~/.emacs.d/elpa/inf-mongo-20130305.127/")
 (require 'inf-mongo)
 
@@ -69,8 +65,25 @@
   (interactive)
   (insert "import pdb; pdb.set_trace()")
   )
-;; (define-key python-mode-map (kbd "") insert-pdb-)
 
-(setq buffer-save-without-query t)
-(setq prelude-flyspell nil)
 (add-hook 'web-mode-hook 'html-mode)
+
+;; flx-ido looks better with ido-vertical-mode
+(require 'ido-vertical-mode)
+(ido-vertical-mode)
+
+(eval-after-load "org"
+  '(progn
+     (define-key org-mode-map (kbd "<S-left>") nil)
+     (define-key org-mode-map (kbd "<S-right>") nil)
+     (org-display-inline-images)))
+  
+(require 'zencoding-mode)
+(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+(setq buffer-save-without-query t)
+(smartparens-global-mode t)
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)                 ; optional
+
