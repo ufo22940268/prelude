@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        kill-region
         kill-sexp
         org-delete-char
         org-end-of-line

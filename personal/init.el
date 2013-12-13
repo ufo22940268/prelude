@@ -27,7 +27,7 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'super)
 
-(global-set-key (kbd "C-x C-e") 'eval-buffer)
+;; (global-set-key (kbd "C-x C-e") 'eval-buffer)
 (global-set-key (kbd "C-c v p") 'view-personal-config)
 (global-set-key (kbd "C-M-/") 'my-expand-file-name-at-point)
 
@@ -50,7 +50,7 @@
 (require 'virtualenvwrapper)
 (venv-initialize-interactive-shells) ;; if you want interactive shell support
 (venv-initialize-eshell) ;; if you want eshell support
-(setq venv-location "~/.virtualenvs"/)
+(setq venv-location "~/.virtualenvs")
 
 (setq visible-bell 1)
 
@@ -63,8 +63,7 @@
 
 (defun insert-pdb-debug ()
   (interactive)
-  (insert "import pdb; pdb.set_trace()")
-  )
+  (insert "import pdb; pdb.set_trace()"))
 
 (add-hook 'web-mode-hook 'html-mode)
 
@@ -76,14 +75,36 @@
   '(progn
      (define-key org-mode-map (kbd "<S-left>") nil)
      (define-key org-mode-map (kbd "<S-right>") nil)
+     (define-key org-mode-map (kbd "<S-down>") nil)
+     (define-key org-mode-map (kbd "<S-up>") nil)
      (org-display-inline-images)))
-  
+
+
 (require 'zencoding-mode)
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(setq buffer-save-without-query t)
 (smartparens-global-mode t)
 
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)                 ; optional
 
+(scroll-bar-mode -1)
+
+(require 'goto-last-change) ;; download this package and install in load-path
+(global-set-key (kbd "C-.") 'goto-last-change)
+
+(global-set-key (kbd "C-c C-j") 'imenu)
+
+(setq scroll-preserve-screen-position 1)
+
+(global-set-key (kbd "C-M-m") 'projectile-compile-project)
+
+;; (defun move-to-end-and-new-line-with-indent (args)
+;;   (interactive)
+;;   (prog (move-end-of-line 1)
+;;         (newline-and-indent)))
+;; (global-set-key (kbd "C-M-return") 'move-to-end-and-new-line-with-indent)
+
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
+
+(add-hook 'find-file-hook (lambda () (setq buffer-save-without-query t)))
