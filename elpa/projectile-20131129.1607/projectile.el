@@ -140,6 +140,7 @@ Otherwise consider the current directory the project root."
     "Gemfile"            ; Bundler file
     "requirements.txt"   ; Pip file
     "Makefile"           ; Make project file
+    "AndroidManifest.xml"           ; Android project file
     )
   "A list of files considered to mark the root of a project."
   :group 'projectile
@@ -338,6 +339,17 @@ The cache is created both in memory and on the hard drive."
     (projectile-add-known-project (projectile-project-root))
     (projectile-save-known-projects)))
 
+(defun projectile-find-tag ()
+  "Find tag in project."
+  (interactive)
+  (visit-tags-table (projectile-project-root) t)
+  (tags-completion-table)
+  (let (tag-names)
+    (mapc (lambda (x)
+            (unless (integerp x)
+              (push (prin1-to-string x t) tag-names)))
+          tags-completion-table)
+    (find-tag (projectile-completing-read "Find tag: " tag-names))))
 
 ;;; Project root related utilities
 (defun projectile-project-root ()
@@ -1039,6 +1051,10 @@ With a prefix argument ARG prompts you for a directory on which to run the repla
   (make-hash-table :test 'equal)
   "A mapping between projects and the last test command used on them.")
 
+(defvar projectile-debug-cmd-map
+  (make-hash-table :test 'equal)
+  "A mapping between projects and the last test command used on them.")
+
 (defun projectile-default-compilation-command (project-type)
   "Retrieve default compilation command for PROJECT-TYPE."
   (cond
@@ -1079,6 +1095,11 @@ With a prefix argument ARG prompts you for a directory on which to run the repla
   (or (gethash project projectile-test-cmd-map)
       (projectile-default-test-command (projectile-project-type))))
 
+(defun projectile-debug-command (project)
+  "Retrieve the debug command for PROJECT."
+  (or (gethash project projectile-debug-cmd-map)
+      (projectile-default-test-command (projectile-project-type))))
+
 (defun projectile-compile-project (arg)
   "Run project compilation command.
 
@@ -1112,6 +1133,22 @@ with a prefix ARG."
          (default-directory project-root))
     (puthash project-root test-cmd projectile-test-cmd-map)
     (compilation-start test-cmd)))
+
+(defun projectile-debug-project (arg)
+  "Run project test command.
+
+Normally you'll be prompted for a compilation command, unless
+variable `compilation-read-command'.  You can force the prompt
+with a prefix ARG."
+  (interactive "P")
+  (let* ((project-root (projectile-project-root))
+         (default-cmd (projectile-debug-command project-root))
+         (test-cmd (if (or compilation-read-command arg)
+                       (compilation-read-command default-cmd)
+                     default-cmd))
+         (default-directory project-root))
+    (puthash project-root test-cmd projectile-debug-cmd-map)
+    (pdb test-cmd)))
 
 (defun projectile-relevant-known-projects ()
   "Return a list of known projects except the current one (if present)."

@@ -1,0 +1,253 @@
+
+.mc-lists.el,0
+
+core/prelude-core.el,3785
+(defun prelude-open-with (arg)prelude-open-with38,1181
+(defun prelude-buffer-mode (buffer-or-name)prelude-buffer-mode52,1787
+(defun prelude-visit-term-buffer ()prelude-visit-term-buffer57,1936
+(defun prelude-search (query-url prompt)prelude-search64,2177
+(defun prelude-google ()prelude-google74,2512
+(defun prelude-youtube ()prelude-youtube79,2657
+(defun prelude-github ()prelude-github85,2854
+(defun prelude-indent-rigidly-and-copy-to-clipboard (begin end arg)prelude-indent-rigidly-and-copy-to-clipboard90,3014
+(defun prelude-smart-open-line-above ()prelude-smart-open-line-above100,3440
+(defun prelude-smart-open-line (arg)prelude-smart-open-line109,3720
+(defun prelude-top-join-line ()prelude-top-join-line121,4067
+(defun prelude-kill-whole-line (&optional arg)prelude-kill-whole-line126,4194
+(defun prelude-move-beginning-of-line (arg)prelude-move-beginning-of-line133,4447
+(defun prelude-indent-buffer ()prelude-indent-buffer159,5269
+(defun prelude-indent-region-or-buffer ()prelude-indent-region-or-buffer164,5402
+(defun prelude-indent-defun ()prelude-indent-defun176,5774
+(defun prelude-annotate-todo ()prelude-annotate-todo183,5941
+(defun prelude-copy-file-name-to-clipboard ()prelude-copy-file-name-to-clipboard195,6389
+(defun prelude-duplicate-current-line-or-region (arg)prelude-duplicate-current-line-or-region205,6765
+(defun prelude-duplicate-and-comment-current-line-or-region (arg)prelude-duplicate-and-comment-current-line-or-region227,7651
+(defun prelude-rename-file-and-buffer ()prelude-rename-file-and-buffer250,8573
+(defun prelude-delete-file-and-buffer ()prelude-delete-file-and-buffer263,9081
+(defun prelude-view-url ()prelude-view-url275,9521
+(defun prelude-untabify-buffer ()prelude-untabify-buffer285,9918
+(defun prelude-cleanup-buffer ()prelude-cleanup-buffer290,10052
+(defun prelude-eval-and-replace ()prelude-eval-and-replace297,10253
+(defun prelude-recompile-init ()prelude-recompile-init307,10554
+(defun prelude-sudo-edit (&optional arg)prelude-sudo-edit312,10690
+(defadvice ido-find-file (after find-file-sudo activate)ido-find-file324,11155
+(defun prelude-start-or-switch-to (function buffer-name)prelude-start-or-switch-to333,11587
+(defun prelude-insert-date ()prelude-insert-date344,11993
+(defun prelude-recentf-ido-find-file ()prelude-recentf-ido-find-file349,12160
+(defun prelude-swap-windows ()prelude-swap-windows358,12471
+(defun prelude-switch-to-previous-buffer ()prelude-switch-to-previous-buffer375,13007
+(defun prelude-kill-other-buffers ()prelude-kill-other-buffers381,13234
+(defun prelude-create-scratch-buffer ()prelude-create-scratch-buffer391,13492
+(defvar prelude-tipsprelude-tips399,13702
+(defun prelude-tip-of-the-day ()prelude-tip-of-the-day428,15308
+(defun prelude-eval-after-init (form)prelude-eval-after-init437,15579
+(defun prelude-exchange-point-and-mark ()prelude-exchange-point-and-mark446,15870
+(defun prelude-update ()prelude-update454,16075
+(defun thing-at-point-goto-end-of-integer ()thing-at-point-goto-end-of-integer466,16468
+(defun thing-at-point-goto-beginning-of-integer ()thing-at-point-goto-beginning-of-integer479,16915
+(defun thing-at-point-bounds-of-integer-at-point ()thing-at-point-bounds-of-integer-at-point492,17405
+(defun thing-at-point-integer-at-point ()thing-at-point-integer-at-point503,17785
+(defun prelude-increment-integer-at-point (&optional inc)prelude-increment-integer-at-point509,18042
+(defun prelude-decrement-integer-at-point (&optional dec)prelude-decrement-integer-at-point520,18431
+(defun prelude-fullscreen ()prelude-fullscreen529,18768
+(defun prelude-find-user-init-file ()prelude-find-user-init-file539,19104
+(defun prelude-find-shell-init-file ()prelude-find-shell-init-file544,19252
+
+core/prelude-editor.el,1962
+(defgroup prelude nilprelude36,1153
+(defcustom prelude-auto-save tprelude-auto-save41,1253
+(defcustom prelude-guru tprelude-guru46,1368
+(defcustom prelude-whitespace tprelude-whitespace51,1468
+(defcustom prelude-clean-whitespace-on-save tprelude-clean-whitespace-on-save56,1599
+(defcustom prelude-flyspell tprelude-flyspell62,1789
+(define-key prog-mode-map (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))prog-mode-map113,3917
+(define-key prog-mode-map (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))prog-mode-map114,4023
+(define-key prog-mode-map (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))prog-mode-map115,4129
+(defun prelude-auto-save-command ()prelude-auto-save-command160,5635
+(defmacro advise-commands (advice-name commands &rest body)advise-commands168,5915
+(defadvice kill-ring-save (before smart-copy activate compile)kill-ring-save194,6855
+(defadvice kill-region (before smart-cut activate compile)kill-region202,7174
+(defun prelude-enable-flyspell ()prelude-enable-flyspell247,8670
+(defun prelude-cleanup-maybe ()prelude-cleanup-maybe252,8868
+(defun prelude-enable-whitespace ()prelude-enable-whitespace257,9051
+(defalias 'ack 'ack-and-a-half)ack298,10331
+(defalias 'ack-same 'ack-and-a-half-same)ack-same299,10363
+(defalias 'ack-find-file 'ack-and-a-half-find-file)ack-find-file300,10405
+(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)ack-find-file-same301,10457
+(defvar yank-indent-modesyank-indent-modes325,11225
+(defvar yank-indent-blacklisted-modesyank-indent-blacklisted-modes330,11418
+(defvar yank-advised-indent-threshold 1000yank-advised-indent-threshold334,11545
+(defun yank-advised-indent-function (beg end)yank-advised-indent-function337,11667
+(defadvice yank (after yank-indent activate)yank342,11862
+(defadvice yank-pop (after yank-pop-indent activate)yank-pop352,12315
+
+core/prelude-global-keybindings.el,170
+(define-key 'help-command "A" 'apropos)help-command66,2115
+(define-key isearch-mode-map (kbd "C-o")isearch-mode-map86,2935
+(define-key global-mapglobal-map110,3654
+
+core/prelude-mode.el,423
+(defvar prelude-mode-mapprelude-mode-map36,1133
+(defun prelude-mode-add-menu ()prelude-mode-add-menu87,3890
+(defun prelude-mode-remove-menu ()prelude-mode-remove-menu128,6025
+(define-minor-mode prelude-modeprelude-mode134,6218
+(define-globalized-minor-mode prelude-global-mode prelude-mode prelude-on)prelude-global-mode146,6489
+(defun prelude-on ()prelude-on148,6565
+(defun prelude-off ()prelude-off152,6636
+
+core/prelude-osx.el,254
+(defun prelude-swap-meta-and-super ()prelude-swap-meta-and-super44,1375
+(define-key prelude-mode-map (kbd "C-c w") 'prelude-swap-meta-and-super)prelude-mode-map59,1948
+(define-key prelude-mode-map (kbd "s-/") 'hippie-expand)prelude-mode-map60,2021
+
+core/prelude-packages.el,699
+(defvar prelude-packagesprelude-packages44,1450
+(defun prelude-packages-installed-p ()prelude-packages-installed-p54,1831
+(defun prelude-require-package (package)prelude-require-package58,1984
+(defun prelude-require-packages (packages)prelude-require-packages65,2231
+(define-obsolete-function-alias 'prelude-ensure-module-deps 'prelude-require-packages)prelude-ensure-module-deps70,2401
+(defun prelude-install-packages ()prelude-install-packages72,2489
+(defun prelude-list-foreign-packages ()prelude-list-foreign-packages85,2948
+(defmacro prelude-auto-install (extension package mode)prelude-auto-install95,3323
+(defvar prelude-auto-install-alistprelude-auto-install-alist104,3789
+
+core/prelude-ui.el,0
+
+init.el,809
+(defvar current-usercurrent-user35,1164
+(defvar prelude-dir (file-name-directory load-file-name)prelude-dir44,1432
+(defvar prelude-core-dir (expand-file-name "core" prelude-dir)prelude-core-dir46,1542
+(defvar prelude-modules-dir (expand-file-name  "modules" prelude-dir)prelude-modules-dir48,1652
+(defvar prelude-personal-dir (expand-file-name "personal" prelude-dir)prelude-personal-dir50,1786
+(defvar prelude-vendor-dir (expand-file-name "vendor" prelude-dir)prelude-vendor-dir56,2081
+(defvar prelude-savefile-dir (expand-file-name "savefile" prelude-dir)prelude-savefile-dir58,2231
+(defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-dir)prelude-modules-file60,2378
+(defun prelude-add-subfolders-to-load-path (parent-dir)prelude-add-subfolders-to-load-path66,2622
+
+modules/prelude-c.el,160
+(defun prelude-c-mode-common-defaults ()prelude-c-mode-common-defaults37,1171
+(defun prelude-makefile-mode-defaults ()prelude-makefile-mode-defaults48,1546
+
+modules/prelude-clojure.el,0
+
+modules/prelude-coffee.el,0
+
+modules/prelude-common-lisp.el,58
+(defun prelude-start-slime ()prelude-start-slime66,2441
+
+modules/prelude-css.el,0
+
+modules/prelude-emacs-lisp.el,577
+(defun prelude-recompile-elc-on-save ()prelude-recompile-elc-on-save38,1198
+(defun prelude-visit-ielm ()prelude-visit-ielm47,1495
+(define-key emacs-lisp-mode-map (kbd "C-c C-z") 'prelude-visit-ielm)emacs-lisp-mode-map53,1667
+(defun prelude-conditional-emacs-lisp-checker ()prelude-conditional-emacs-lisp-checker55,1737
+(defun prelude-emacs-lisp-mode-defaults ()prelude-emacs-lisp-mode-defaults61,2006
+(defun prelude-ielm-mode-defaults ()prelude-ielm-mode-defaults78,2579
+(defun conditionally-enable-smartparens-mode ()conditionally-enable-smartparens-mode99,3203
+
+modules/prelude-erc.el,492
+(defun call-libnotify (matched-type nick msg)call-libnotify83,2746
+(defvar erc-notify-nick-alist nilerc-notify-nick-alist93,3133
+(defvar erc-notify-timeout 10erc-notify-timeout97,3243
+(defun erc-notify-allowed-p (nick &optional delay)erc-notify-allowed-p101,3358
+(defun erc-notify-on-private-msg (proc parsed)erc-notify-on-private-msg119,4058
+(defun start-irc ()start-irc140,4811
+(defun filter-server-buffers ()filter-server-buffers146,4981
+(defun stop-irc ()stop-irc152,5122
+
+modules/prelude-erlang.el,51
+(defcustom wrangler-path nilwrangler-path37,1151
+
+modules/prelude-haskell.el,0
+
+modules/prelude-helm.el,44
+(defun helm-prelude ()helm-prelude40,1170
+
+modules/prelude-js.el,0
+
+modules/prelude-key-chord.el,0
+
+modules/prelude-latex.el,74
+(defun prelude-latex-mode-defaults ()prelude-latex-mode-defaults59,1705
+
+modules/prelude-lisp.el,699
+(define-key read-expression-map (kbd "TAB") 'lisp-complete-symbol)read-expression-map39,1265
+(define-key lisp-mode-shared-map (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))lisp-mode-shared-map42,1353
+(define-key lisp-mode-shared-map (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))lisp-mode-shared-map43,1466
+(define-key lisp-mode-shared-map (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))lisp-mode-shared-map44,1579
+(defun prelude-lisp-coding-defaults ()prelude-lisp-coding-defaults47,1723
+(defun prelude-interactive-lisp-coding-defaults ()prelude-interactive-lisp-coding-defaults54,1939
+
+modules/prelude-mediawiki.el,0
+
+modules/prelude-org.el,70
+(defun prelude-org-mode-defaults ()prelude-org-mode-defaults41,1312
+
+modules/prelude-perl.el,193
+(defalias 'perl-mode 'cperl-mode)perl-mode38,1205
+(define-key 'help-command "P" 'cperl-perldoc)help-command40,1240
+(defun prelude-cperl-mode-defaults ()prelude-cperl-mode-defaults42,1287
+
+modules/prelude-programming.el,336
+(defun prelude-ido-goto-symbol (&optional symbol-list)prelude-ido-goto-symbol37,1193
+(defun prelude-local-comment-auto-fill ()prelude-local-comment-auto-fill90,3207
+(defun prelude-font-lock-comment-annotations ()prelude-font-lock-comment-annotations93,3316
+(defun prelude-prog-mode-defaults ()prelude-prog-mode-defaults116,4226
+
+modules/prelude-python.el,76
+(defun prelude-python-mode-defaults ()prelude-python-mode-defaults38,1210
+
+modules/prelude-ruby.el,64
+(define-key 'help-command (kbd "R") 'yari)help-command55,2069
+
+modules/prelude-scala.el,74
+(defun prelude-scala-mode-defaults ()prelude-scala-mode-defaults38,1206
+
+modules/prelude-scheme.el,0
+
+modules/prelude-scss.el,72
+(defun prelude-scss-mode-defaults ()prelude-scss-mode-defaults38,1169
+
+modules/prelude-web.el,0
+
+modules/prelude-xml.el,0
+
+personal/custom.el,0
+
+personal/init-auto-complete.el,357
+(defun sanityinc/auto-complete-at-point ()sanityinc/auto-complete-at-point16,708
+(defun sanityinc/never-indent ()sanityinc/never-indent22,869
+(defun set-auto-complete-as-completion-at-point-function ()set-auto-complete-as-completion-at-point-function25,978
+(defun sanityinc/dabbrev-friend-buffer (other-buffer)sanityinc/dabbrev-friend-buffer53,2084
+
+personal/init.el,260
+(defun view-personal-config()view-personal-config17,391
+(defun my-expand-file-name-at-point ()my-expand-file-name-at-point21,483
+(define-key global-map (kbd "RET") 'newline-and-indent)global-map59,1989
+(defun insert-pdb-debug ()insert-pdb-debug64,2135
+
+personal/snippets/js-mode/req.html,0
+
+personal/snippets/python-mode/.yas-setup.el,126
+(defun python-split-args (arg-string)python-split-args1,0
+(defun python-args-to-docstring ()python-args-to-docstring7,258
+
+personal/snippets/rename_add_contr.py,217
+def rename(root, f):rename8,93
+CONT = "# contributor: Andrea crotti\n# --"CONT15,293
+END = "# --\n\n"END16,337
+orig = "# --\n\n"orig18,355
+to  = "# --\n"to19,373
+def insert(root, f, orig, to):insert21,389
+
+personal/snippets/text-mode/.yas-setup.el,51
+(defun yas-with-comment (str)yas-with-comment1,0
+
+sample/prelude-modules.el,0
+
+utils/installer.sh,139
+install_prelude () {install_prelude1,0
+make_prelude_dirs () {make_prelude_dirs16,435
+colors () {colors23,679
+usage() {usage62,1761

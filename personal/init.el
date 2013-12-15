@@ -67,9 +67,9 @@
 
 (add-hook 'web-mode-hook 'html-mode)
 
-;; flx-ido looks better with ido-vertical-mode
-(require 'ido-vertical-mode)
-(ido-vertical-mode)
+;; ;; flx-ido looks better with ido-vertical-mode
+;; (require 'ido-vertical-mode)
+;; (ido-vertical-mode)
 
 (eval-after-load "org"
   '(progn
@@ -108,3 +108,34 @@
           'delete-trailing-whitespace)
 
 (add-hook 'find-file-hook (lambda () (setq buffer-save-without-query t)))
+
+(global-set-key (kbd "C-c p p") 'projectile-debug-project)
+;; (global-set-key (kbd "M-.") 'projectile-find-tag)
+(global-set-key (kbd "C-c M-s") (lambda () (interactive) (shell "server")))
+
+(custom-set-variables
+ '(eclim-eclipse-dirs '("~/program/eclipse/")))
+(custom-set-variables
+ '(eclim-executable "~/program/eclipse/eclim"))
+(require 'eclim)
+(global-eclim-mode)
+(require 'eclimd)
+(setq eclimd-default-workspace "~/Documents/eclipse_workspace/")
+;; regular auto-complete initialization
+(add-hook 'java-mode-hook 'config-eclim)
+(defun config-eclim ()
+  (interactive)
+  (progn
+    ;; regular auto-complete initialization
+    (require 'auto-complete-config)
+    (ac-config-default)
+
+    ;; add the emacs-eclim source
+    (require 'ac-emacs-eclim-source)
+    (ac-emacs-eclim-config)
+
+    (setq help-at-pt-display-when-idle t)
+    (setq help-at-pt-timer-delay 0.1)
+    (help-at-pt-set-timer)
+    )
+  )

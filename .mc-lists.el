@@ -9,6 +9,7 @@
         org-end-of-line
         org-force-self-insert
         sp--self-insert-command
+        sp-backward-delete-char
         toggle-input-method
         yas-expand
         ))
