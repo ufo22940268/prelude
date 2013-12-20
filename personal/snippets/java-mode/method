@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: method
-# key: method
+# key: m
 # --
-${1:public }${2:void} ${3:name} (${4:args}) {
-           $0
+private ${1:void} ${2:method}($3) {
+        $4
 }

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: make_request
+# key: mrequest
+# --
+mHttpHandler.get("$1", 1, new ResponseHandler() {
+        @Override
+        public void onSuccess(String result) {
+            if (isFinished()) {
+                return;
+            }
+
+            $2
+        }
+    }

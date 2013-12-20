@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: public_method
+# key: pv
+# --
+public ${1:String} ${2:var};

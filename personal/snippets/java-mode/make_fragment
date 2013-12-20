@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: make_fragment
+# key: mfragment
+# --
+public class extends BaseFragment {
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup parent = (ViewGroup)inflater.inflate(R.layout.$1, container, false);
+        return parent;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+}

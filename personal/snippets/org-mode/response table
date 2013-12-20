@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: response table
+# key: resp
+# --
+| name | desc |
+|------+------|
+|      |      |

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: request table
+# key: req
+# --
+| name | type | required | desc |
+|------+------+----------+------|
+|      |      |          |      |

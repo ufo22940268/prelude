@@ -3,14 +3,24 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-colon
+        c-electric-delete-forward
+        c-electric-semi&comma
         kill-region
         kill-sexp
+        mark-sexp
+        nxml-electric-slash
         org-delete-char
         org-end-of-line
         org-force-self-insert
+        prelude-cleanup-buffer
+        prelude-move-beginning-of-line
+        projectile-compile-project
         sp--self-insert-command
         sp-backward-delete-char
+        sp-remove-active-pair-overlay
         toggle-input-method
+        transpose-words
         yas-expand
         ))
 

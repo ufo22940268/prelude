@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: static_method
+# key: sm
+# --
+public static ${1:void} ${2:method}($3) {
+       $4
+}

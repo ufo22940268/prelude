@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: make_base_adapter
+# key: mbaseadapter
+# --
+public class $1 extends BaseAdapter {
+    public int getCount() {
+    }
+
+    public Object getItem(int position) {
+        return null;
+    }
+
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+    }
+}

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: imports
+# key: imports
+# --
+import android.util.*;
+import android.widget.*;
+import android.view.*;
+import android.content.*;
+import android.app.*;
+import android.os.*;
+import android.text.*;
+import android.database.*;
+import android.net.*;
+import android.opengl.*;
+import android.graphics.*;
+import android.view.animation.*;
+import android.text.TextUtils;
+import android.support.v4.app.*;
+import android.support.v4.app.Fragment;
+
+import java.util.*;

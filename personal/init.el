@@ -2,6 +2,8 @@
 
 (prelude-require-package 'yasnippet)
 
+(require 'auto-complete-config)
+(ac-config-default)
 
 (require 'yasnippet)
 (setq yas-snippet-dirs
@@ -54,8 +56,25 @@
 
 (setq visible-bell 1)
 
+(defun window-half-height ()
+  (max 1 (/ (1- (window-height (selected-window))) 2)))
+
+(defun scroll-up-half ()
+  (interactive)
+  (scroll-up (window-half-height)))
+
+(defun scroll-down-half ()
+  (interactive)
+  (scroll-down (window-half-height)))
+
+(global-set-key (kbd "C-v") 'scroll-up-half)
+(global-set-key (kbd "M-v") 'scroll-down-half)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
+
+;; (global-set-key (kbd "M-n") '(lambda () (interactive) (scroll-down 1)))
+;; (global-set-key (kbd "M-p") '(lambda () (interactive) (scroll-up 1)))
+
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (add-to-list 'load-path "~/.emacs.d/elpa/inf-mongo-20130305.127/")
@@ -92,7 +111,7 @@
 (require 'goto-last-change) ;; download this package and install in load-path
 (global-set-key (kbd "C-.") 'goto-last-change)
 
-(global-set-key (kbd "C-c C-j") 'imenu)
+;; (global-set-key (kbd "C-c C-j") 'imenu)
 
 (setq scroll-preserve-screen-position 1)
 
@@ -104,14 +123,79 @@
 ;;         (newline-and-indent)))
 ;; (global-set-key (kbd "C-M-return") 'move-to-end-and-new-line-with-indent)
 
-(add-hook 'before-save-hook
-          'delete-trailing-whitespace)
+;; (add-hook 'before-save-hook
+;;           'delete-trailing-whitespace)
 
 (add-hook 'find-file-hook (lambda () (setq buffer-save-without-query t)))
 
 (global-set-key (kbd "C-c p p") 'projectile-debug-project)
+
+
+(setq android-mode-sdk-dir "~/program/adt-bundle-mac-x86_64-20130219/sdk/")
+(require 'android-mode)
+(load-file "~/.emacs.d/personal/android.el")
+
+(add-hook 'term-mode-hook (lambda()
+                            (yas-minor-mode -1)))
+;; (setq system-uses-terminfo nil)
+
+;; (add-hook 'compilation-mode-hook (lambda () (interactive) (end-of-buffer)))
+(setq projectile-switch-project-action 'projectile-dired)
 ;; (global-set-key (kbd "M-.") 'projectile-find-tag)
-(global-set-key (kbd "C-c M-s") (lambda () (interactive) (shell "server")))
+(global-set-key (kbd "M-.") 'helm-etags-select)
+
+(define-key yas-minor-mode-map (kbd "C-,") 'er/expand-region)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; (global-set-key (kbd "C-c f") 'projectile-find-file)
+;; (global-set-key (kbd "C-c r") 'projectile-recentf)
+(define-key eclim-mode-map (kbd "C-c a i") 'eclim-java-import-organize)
+;; (define-key projectile-mode-map (kbd "C-x C-f") 'projectile-find-file)
+
+(eval-after-load "sgml-mode"
+  '(progn
+     (require 'tagedit)
+     (tagedit-add-paredit-like-keybindings)
+     (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1)))))
+
+(defun next-user-buffer ()
+  "Switch to the next user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (next-buffer) )))
+
+(defun previous-user-buffer ()
+  "Switch to the previous user buffer.
+User buffers are those whose name does not start with *."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (string-match "^*" (buffer-name)) (< i 50))
+      (setq i (1+ i)) (previous-buffer) )))
+
+(defun next-emacs-buffer ()
+  "Switch to the next emacs buffer.
+Emacs buffers are those whose name starts with *."
+  (interactive)
+  (next-buffer)
+  (let ((i 0))
+    (while (and (not (string-match "^*" (buffer-name))) (< i 50))
+      (setq i (1+ i)) (next-buffer) )))
+
+(defun previous-emacs-buffer ()
+  "Switch to the previous emacs buffer.
+Emacs buffers are those whose name starts with *."
+  (interactive)
+  (previous-buffer)
+  (let ((i 0))
+    (while (and (not (string-match "^*" (buffer-name))) (< i 50))
+      (setq i (1+ i)) (previous-buffer) )))
+(global-set-key (kbd "C-x n") 'next-user-buffer)
+(global-set-key (kbd "C-x p") 'previous-user-buffer)
+(global-set-key (kbd "C-x C-n") 'next-user-buffer)
+(global-set-key (kbd "C-x C-p") 'previous-user-buffer)
 
 (custom-set-variables
  '(eclim-eclipse-dirs '("~/program/eclipse/")))
@@ -121,21 +205,22 @@
 (global-eclim-mode)
 (require 'eclimd)
 (setq eclimd-default-workspace "~/Documents/eclipse_workspace/")
+(setq eclimd-wait-for-process nil)
 ;; regular auto-complete initialization
-(add-hook 'java-mode-hook 'config-eclim)
-(defun config-eclim ()
-  (interactive)
-  (progn
-    ;; regular auto-complete initialization
-    (require 'auto-complete-config)
-    (ac-config-default)
+(require 'auto-complete-config)
+(ac-config-default)
 
-    ;; add the emacs-eclim source
-    (require 'ac-emacs-eclim-source)
-    (ac-emacs-eclim-config)
+;; add the emacs-eclim source
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
 
-    (setq help-at-pt-display-when-idle t)
-    (setq help-at-pt-timer-delay 0.1)
-    (help-at-pt-set-timer)
-    )
-  )
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
+(setq eclim-autoupdate-problems nil)
+
+(require 'shell-here)
+(global-set-key (kbd "C-c !") 'shell-here)
+(global-set-key (kbd "C-j") 'imenu)
+
+;; (global-set-key (kbd "C-c v k") '(lambda () (find-file "~/.emacs.d/core/prelude-global-keybindings.el"))

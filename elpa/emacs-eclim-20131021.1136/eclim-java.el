@@ -142,7 +142,7 @@ in eclim when appropriate."
       (ignore-errors (apply 'eclim--call-process (list "java_src_update" "-p" pr "-f" fn))))))
 
 (defun eclim--java-parser-read (str)
-  (first 
+  (first
    (read-from-string
     (format "(%s)"
             (replace-regexp-in-string
@@ -412,7 +412,8 @@ exist already."
     (let ((revert-buffer-function 'eclim-soft-revert-imports))
       (when (not (re-search-forward (format "^import %s;" type) nil t))
         (eclim/execute-command "java_import" "-p" "-f" "-o" "-e" ("-t" type))
-        (eclim--problems-update-maybe)))))
+        (eclim--problems-update-maybe))))
+  )
 
 (defun eclim-java-import-organize (&optional types)
   "Checks the current file for missing imports, removes unused imports and
@@ -426,7 +427,8 @@ sorts import statements. "
       (when (vectorp res)
         (save-excursion
           (eclim-java-import-organize
-           (mapcar (lambda (imports) (eclim--completing-read "Import: " (append imports '()))) res)))))))
+           (mapcar (lambda (imports) (eclim--completing-read "Import: " (append imports '()))) res))))))
+  )
 
 (defun format-type (type)
   (cond ((null type) nil)
@@ -471,7 +473,7 @@ method."
              (sig (eclim--java-parse-method-signature method))
              (ret (assoc-default :return sig)))
         (yas/expand-snippet (format "@Override\n%s %s(%s) {$0}"
-                                    (apply #'concat 
+                                    (apply #'concat
                                            (join " " (remove-if-not (lambda (m) (find m '(public protected private void))) (subseq ret 0 (1- (length ret)))))
                                            " "
                                            (format-type (remove-if (lambda (m) (find m '(abstract public protected private ))) ret)))

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: InjectView
+# key: minjectview
+# --
+@InjectView(R.id.$1) ${2:View} ${3:name};

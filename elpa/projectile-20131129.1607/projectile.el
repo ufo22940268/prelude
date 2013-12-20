@@ -147,7 +147,8 @@ Otherwise consider the current directory the project root."
   :type '(repeat string))
 
 (defcustom projectile-globally-ignored-files
-  '("TAGS")
+  '("TAGS"
+    "R.java")
   "A list of files globally ignored by projectile."
   :group 'projectile
   :type '(repeat string))
@@ -161,6 +162,8 @@ Otherwise consider the current directory the project root."
     ".bzr"
     "_darcs"
     "venv"
+    "target"
+    "gen"
     "build")
   "A list of directories globally ignored by projectile."
   :group 'projectile
@@ -333,6 +336,7 @@ The cache is created both in memory and on the hard drive."
   (when (and (projectile-project-p) projectile-enable-caching)
     (projectile-cache-current-file)))
 
+
 (defun projectile-cache-projects-find-file-hook ()
   "Function for caching projects with `find-file-hook'."
   (when (projectile-project-p)
@@ -349,7 +353,9 @@ The cache is created both in memory and on the hard drive."
             (unless (integerp x)
               (push (prin1-to-string x t) tag-names)))
           tags-completion-table)
+    (push (thing-at-point 'symbol) tag-names)
     (find-tag (projectile-completing-read "Find tag: " tag-names))))
+
 
 ;;; Project root related utilities
 (defun projectile-project-root ()

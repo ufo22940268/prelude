@@ -63,23 +63,23 @@ core/prelude-editor.el,1962
 (define-key prog-mode-map (kbd "M-(") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "(")))prog-mode-map113,3917
 (define-key prog-mode-map (kbd "M-[") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "[")))prog-mode-map114,4023
 (define-key prog-mode-map (kbd "M-\"") (lambda (&optional arg) (interactive "P") (sp-wrap-with-pair "\"")))prog-mode-map115,4129
-(defun prelude-auto-save-command ()prelude-auto-save-command160,5635
-(defmacro advise-commands (advice-name commands &rest body)advise-commands168,5915
-(defadvice kill-ring-save (before smart-copy activate compile)kill-ring-save194,6855
-(defadvice kill-region (before smart-cut activate compile)kill-region202,7174
-(defun prelude-enable-flyspell ()prelude-enable-flyspell247,8670
-(defun prelude-cleanup-maybe ()prelude-cleanup-maybe252,8868
-(defun prelude-enable-whitespace ()prelude-enable-whitespace257,9051
-(defalias 'ack 'ack-and-a-half)ack298,10331
-(defalias 'ack-same 'ack-and-a-half-same)ack-same299,10363
-(defalias 'ack-find-file 'ack-and-a-half-find-file)ack-find-file300,10405
-(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)ack-find-file-same301,10457
-(defvar yank-indent-modesyank-indent-modes325,11225
-(defvar yank-indent-blacklisted-modesyank-indent-blacklisted-modes330,11418
-(defvar yank-advised-indent-threshold 1000yank-advised-indent-threshold334,11545
-(defun yank-advised-indent-function (beg end)yank-advised-indent-function337,11667
-(defadvice yank (after yank-indent activate)yank342,11862
-(defadvice yank-pop (after yank-pop-indent activate)yank-pop352,12315
+(defun prelude-auto-save-command ()prelude-auto-save-command161,5636
+(defmacro advise-commands (advice-name commands &rest body)advise-commands169,5916
+(defadvice kill-ring-save (before smart-copy activate compile)kill-ring-save195,6856
+(defadvice kill-region (before smart-cut activate compile)kill-region203,7175
+(defun prelude-enable-flyspell ()prelude-enable-flyspell248,8671
+(defun prelude-cleanup-maybe ()prelude-cleanup-maybe253,8869
+(defun prelude-enable-whitespace ()prelude-enable-whitespace258,9052
+(defalias 'ack 'ack-and-a-half)ack299,10332
+(defalias 'ack-same 'ack-and-a-half-same)ack-same300,10364
+(defalias 'ack-find-file 'ack-and-a-half-find-file)ack-find-file301,10406
+(defalias 'ack-find-file-same 'ack-and-a-half-find-file-same)ack-find-file-same302,10458
+(defvar yank-indent-modesyank-indent-modes326,11226
+(defvar yank-indent-blacklisted-modesyank-indent-blacklisted-modes331,11419
+(defvar yank-advised-indent-threshold 1000yank-advised-indent-threshold335,11546
+(defun yank-advised-indent-function (beg end)yank-advised-indent-function338,11668
+(defadvice yank (after yank-indent activate)yank343,11863
+(defadvice yank-pop (after yank-pop-indent activate)yank-pop353,12316
 
 core/prelude-global-keybindings.el,170
 (define-key 'help-command "A" 'apropos)help-command66,2115
@@ -213,19 +213,43 @@ modules/prelude-web.el,0
 
 modules/prelude-xml.el,0
 
+personal/android.el,1057
+(defvar android-jdb-port-history '("8700")android-jdb-port-history6,149
+(defvar android-jdb-project-root-history '()android-jdb-project-root-history9,240
+(defvar android-jdb-history nilandroid-jdb-history11,341
+(defvar android-jdb-activity-class-history ()android-jdb-activity-class-history14,424
+(defcustom  android-jdb-command-name "jdb"android-jdb-command-name17,540
+(defgroup android nilandroid22,646
+(defcustom android-project-root nilandroid-project-root26,719
+(defcustom android-apk nilandroid-apk31,848
+(defcustom android-activity-class nilandroid-activity-class36,970
+(defun android-read-project-root ()android-read-project-root41,1098
+(defun android-jdb (port root)android-jdb61,1914
+(defun android-emulate ()android-emulate81,2644
+(defun android-install-app (apk)android-install-app86,2802
+(defun android-uninstall-app (package-name)android-uninstall-app98,3379
+(defun android-start-activity (package class)android-start-activity106,3769
+(defun android-debug-activity (package class)android-debug-activity118,4237
+
 personal/custom.el,0
 
-personal/init-auto-complete.el,357
-(defun sanityinc/auto-complete-at-point ()sanityinc/auto-complete-at-point16,708
-(defun sanityinc/never-indent ()sanityinc/never-indent22,869
-(defun set-auto-complete-as-completion-at-point-function ()set-auto-complete-as-completion-at-point-function25,978
-(defun sanityinc/dabbrev-friend-buffer (other-buffer)sanityinc/dabbrev-friend-buffer53,2084
+personal/init-auto-complete.el,0
 
-personal/init.el,260
-(defun view-personal-config()view-personal-config17,391
-(defun my-expand-file-name-at-point ()my-expand-file-name-at-point21,483
-(define-key global-map (kbd "RET") 'newline-and-indent)global-map59,1989
-(defun insert-pdb-debug ()insert-pdb-debug64,2135
+personal/init.el,910
+(defun view-personal-config()view-personal-config19,443
+(defun my-expand-file-name-at-point ()my-expand-file-name-at-point23,535
+(defun window-half-height ()window-half-height59,1944
+(defun scroll-up-half ()scroll-up-half62,2030
+(defun scroll-down-half ()scroll-down-half66,2108
+(define-key global-map (kbd "RET") 'newline-and-indent)global-map78,2529
+(defun insert-pdb-debug ()insert-pdb-debug83,2675
+(define-key yas-minor-mode-map (kbd "C-,") 'er/expand-region)yas-minor-mode-map147,4635
+(define-key yas-minor-mode-map (kbd "TAB") nil)yas-minor-mode-map148,4697
+(define-key eclim-mode-map (kbd "C-c a i") 'eclim-java-import-organize)eclim-mode-map151,4855
+(defun next-user-buffer ()next-user-buffer160,5173
+(defun previous-user-buffer ()previous-user-buffer169,5441
+(defun next-emacs-buffer ()next-emacs-buffer178,5725
+(defun previous-emacs-buffer ()previous-emacs-buffer187,5994
 
 personal/snippets/js-mode/req.html,0
 
