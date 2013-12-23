@@ -5,6 +5,7 @@
 <LinearLayout
     android:layout_width="${1:wrap_content}"
     android:layout_height="${2:wrap_content}"
+    android:orientation="${1:vertical}"
     >
 
 </LinearLayout>

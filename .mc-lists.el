@@ -19,6 +19,7 @@
         sp--self-insert-command
         sp-backward-delete-char
         sp-remove-active-pair-overlay
+        tagedit-insert-equal
         toggle-input-method
         transpose-words
         yas-expand

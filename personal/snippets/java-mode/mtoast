@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mtoast
+# key: mtoast
+# --
+Toast.makeText(${1:this},
+        R.string.$2, Toast.LENGTH_LONG).show();

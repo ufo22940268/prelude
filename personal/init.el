@@ -141,14 +141,13 @@
 
 ;; (add-hook 'compilation-mode-hook (lambda () (interactive) (end-of-buffer)))
 (setq projectile-switch-project-action 'projectile-dired)
-;; (global-set-key (kbd "M-.") 'projectile-find-tag)
-(global-set-key (kbd "M-.") 'helm-etags-select)
+(global-set-key (kbd "M-.") 'projectile-find-tag)
+;; (global-set-key (kbd "M-.") 'helm-etags-select) 
 
 (define-key yas-minor-mode-map (kbd "C-,") 'er/expand-region)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 ;; (global-set-key (kbd "C-c f") 'projectile-find-file)
 ;; (global-set-key (kbd "C-c r") 'projectile-recentf)
-(define-key eclim-mode-map (kbd "C-c a i") 'eclim-java-import-organize)
 ;; (define-key projectile-mode-map (kbd "C-x C-f") 'projectile-find-file)
 
 (eval-after-load "sgml-mode"
@@ -218,9 +217,18 @@ Emacs buffers are those whose name starts with *."
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 (setq eclim-autoupdate-problems nil)
+(setq eclim-problems-hl-errors nil)
 
 (require 'shell-here)
 (global-set-key (kbd "C-c !") 'shell-here)
 (global-set-key (kbd "C-j") 'imenu)
 
-;; (global-set-key (kbd "C-c v k") '(lambda () (find-file "~/.emacs.d/core/prelude-global-keybindings.el"))
+(require 'ac-emacs-eclim-source)
+
+(setq compilation-scroll-output 'first-error)
+(add-to-list 'auto-mode-alist '("\\.xml$" . sgml-mode))
+(add-hook 'projectile-switch-project
+          '(lambda () (interactive) (progn
+                                     (tags-reset-tags-tables)
+                                     (visit-tags-table (projectile-project-root)))))
+(global-set-key (kbd "M-.") 'find-tag)
