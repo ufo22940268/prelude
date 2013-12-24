@@ -2,6 +2,6 @@
 # name: cls
 # key: cls
 # --
-class ${1:`(get-file-name)`} {
+public class ${1:`(get-file-name)`} {
       $0
 }

@@ -240,12 +240,12 @@ Emacs buffers are those whose name starts with *."
 (require 'prelude-key-chord)
 
 (defun insert-file-name ()
-  "Insert the full path file name into the current buffer."
+  "Insert the full p
+ath file name into the current buffer."
   (interactive)
   (insert (get-file-name)))
 
 (defun get-file-name ()
   (let ((file-name (file-name-sans-extension (buffer-name (window-buffer (minibuffer-selected-window))))))
     file-name))
-
 

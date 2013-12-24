@@ -3,9 +3,19 @@
 ;;; Code:
 
 
-;;;### (autoloads (projectile-global-mode projectile-mode) "projectile"
-;;;;;;  "projectile.el" (21145 15175 0 0))
+;;;### (autoloads (projectile-global-mode projectile-mode projectile-commander)
+;;;;;;  "projectile" "projectile.el" (21177 40665 0 0))
 ;;; Generated autoloads from projectile.el
+
+(autoload 'projectile-commander "projectile" "\
+Execute a Projectile command with a single letter.
+The user is prompted for a single character indicating the action to invoke.
+The `?' character describes then
+available actions.
+
+See `def-projectile-commander-method' for defining new methods.
+
+\(fn)" t nil)
 
 (defconst projectile-mode-line-lighter " Projectile" "\
 The default lighter for `projectile-mode'.")
@@ -48,7 +58,7 @@ See `projectile-mode' for more information on Projectile mode.
 
 ;;;***
 
-;;;### (autoloads nil nil ("projectile-pkg.el") (21145 15175 604221
+;;;### (autoloads nil nil ("projectile-pkg.el") (21177 40665 385862
 ;;;;;;  0))
 
 ;;;***

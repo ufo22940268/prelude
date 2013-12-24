@@ -6,6 +6,7 @@
         c-electric-colon
         c-electric-delete-forward
         c-electric-semi&comma
+        end-of-buffer
         kill-region
         kill-sexp
         mark-sexp
@@ -15,9 +16,12 @@
         org-force-self-insert
         prelude-cleanup-buffer
         prelude-move-beginning-of-line
+        prelude-smart-open-line
         projectile-compile-project
+        smex
         sp--self-insert-command
         sp-backward-delete-char
+        sp-forward-sexp
         sp-remove-active-pair-overlay
         tagedit-insert-equal
         toggle-input-method
