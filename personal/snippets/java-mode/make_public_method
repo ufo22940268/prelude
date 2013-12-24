@@ -2,6 +2,6 @@
 # name: make_public_method
 # key: pm
 # --
-public ${1:void} ${2:method} {
+public ${1:void} ${2:method}() {
        $3
 }

@@ -205,6 +205,8 @@ Emacs buffers are those whose name starts with *."
 (require 'eclimd)
 (setq eclimd-default-workspace "~/Documents/eclipse_workspace/")
 (setq eclimd-wait-for-process nil)
+
+
 ;; regular auto-complete initialization
 (require 'auto-complete-config)
 (ac-config-default)
@@ -213,11 +215,13 @@ Emacs buffers are those whose name starts with *."
 (require 'ac-emacs-eclim-source)
 (ac-emacs-eclim-config)
 
+
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 (setq eclim-autoupdate-problems nil)
 (setq eclim-problems-hl-errors nil)
+(define-key eclim-mode-map (kbd "C-c C-e d") 'eclim-java-show-documentation-for-current-element)
 
 (require 'shell-here)
 (global-set-key (kbd "C-c !") 'shell-here)
@@ -232,3 +236,16 @@ Emacs buffers are those whose name starts with *."
                                      (tags-reset-tags-tables)
                                      (visit-tags-table (projectile-project-root)))))
 (global-set-key (kbd "M-.") 'find-tag)
+
+(require 'prelude-key-chord)
+
+(defun insert-file-name ()
+  "Insert the full path file name into the current buffer."
+  (interactive)
+  (insert (get-file-name)))
+
+(defun get-file-name ()
+  (let ((file-name (file-name-sans-extension (buffer-name (window-buffer (minibuffer-selected-window))))))
+    file-name))
+
+
