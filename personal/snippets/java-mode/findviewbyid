@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: findviewbyid
+# key: mfid
+# --
+findViewById(R.id.$0)

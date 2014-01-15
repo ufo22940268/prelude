@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: code_block
+# key: m%
+# --
+<% $0 %>

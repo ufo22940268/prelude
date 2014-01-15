@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: make_get_view
+# key: mgetview
+# --
+@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    View view = convertView;
+    if (convertView == null) {
+        view = LayoutInflater.from(mContext).inflate(R.layout.$1, parent, false);
+    }
+    $0
+    return view;
+}
