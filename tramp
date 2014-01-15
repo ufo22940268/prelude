@@ -1,19 +1,67 @@
-;; -*- emacs-lisp -*- <13/12/08 20:23:07 /Users/ccheng/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <14/01/07 15:30:23 /Users/ccheng/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
-((["sudo" "root" "localhost" nil nil]
+((["ssh" "root" "122.226.88.51" nil nil]
+  ("uname" "Linux 3.8.0-29-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("file-exists" "test -e")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~" "/root"))
+ (["ssh" "root" "192.241.196.189" nil nil]
+  ("uname" "Linux 3.8.4-1-ARCH")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("~" "/root")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 0))
+ (["ssh" "root" "biubiubiu.me" nil nil]
+  ("uname" "Linux 3.8.4-1-ARCH")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("file-exists" "test -e")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 0)
+  ("readlink" "\\readlink")
+  ("~" "/root")
+  ("uid-integer" 0))
+ (["sudo" "root" "localhost" nil nil]
   ("uname" "Darwin 13.0.2")
   ("test" "test")
   ("remote-path"
    ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/bin" "/usr/local/sbin" "/opt/local/bin"))
   ("remote-shell" "/bin/sh")
   ("busybox" nil)
-  ("file-exists" "test -e")
   ("readlink" nil)
   ("perl-file-spec" t)
   ("perl-cwd-realpath" t)
   ("perl" "\\perl5")
   ("stat" nil)
   ("id" "/usr/bin/id")
-  ("gid-integer" 0)))
+  ("gid-integer" 0)
+  ("file-exists" "test -e")
+  ("uid-integer" 0)))

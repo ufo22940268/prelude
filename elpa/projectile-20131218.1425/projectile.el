@@ -981,6 +981,11 @@ With a prefix ARG invalidates the cache first."
             (unless (integerp x)
               (push (prin1-to-string x t) tag-names)))
           tags-completion-table)
+    (let ((symbol (thing-at-point 'symbol)))
+      (if symbol
+          (progn (message (concat symbol " founded"))
+                 (push symbol tag-names)
+                 (message "no symbole founded"))))
     (find-tag (projectile-completing-read "Find tag: " tag-names))))
 
 (defun projectile-files-in-project-directory (directory)
@@ -1141,8 +1146,26 @@ with a prefix ARG."
                               (compilation-read-command default-cmd)
                             default-cmd))
          (default-directory project-root))
+    (save-some-buffers)
     (puthash project-root compilation-cmd projectile-compilation-cmd-map)
     (compilation-start compilation-cmd)))
+
+(defun projectile-pdb-project (arg)
+  "Run project compilation command.
+
+Normally you'll be prompted for a compilation command, unless
+variable `compilation-read-command'.  You can force the prompt
+with a prefix ARG."
+  (interactive "P")
+  (let* ((project-root (projectile-project-root))
+         (default-cmd (projectile-compilation-command project-root))
+         (compilation-cmd (if (or compilation-read-command arg)
+                              (compilation-read-command default-cmd)
+                            default-cmd))
+         (default-directory project-root))
+    (save-some-buffers)
+    (puthash project-root compilation-cmd projectile-compilation-cmd-map)
+    (pdb compilation-cmd)))
 
 ;; TODO - factor this duplication out
 (defun projectile-test-project (arg)

@@ -3,9 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        async-shell-command
         c-electric-colon
         c-electric-delete-forward
         c-electric-semi&comma
+        copy-to-register
         end-of-buffer
         kill-region
         kill-sexp
@@ -18,6 +20,7 @@
         prelude-move-beginning-of-line
         prelude-smart-open-line
         projectile-compile-project
+        python-indent-electric-colon
         smex
         sp--self-insert-command
         sp-backward-delete-char

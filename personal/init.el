@@ -1,5 +1,4 @@
 (prelude-require-package 'auto-complete)
-
 (prelude-require-package 'yasnippet)
 
 (require 'auto-complete-config)
@@ -39,16 +38,6 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; (eval-when-compile (require 'cl))
-
-;; (defun set-font (english chinese english-size chinese-size)
-;;   (set-face-attribute 'default nil :font
-;;                       (format "%s:pixelsize=%d" english english-size))
-;;   (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;;     (set-fontset-font (frame-parameter nil 'font) charset
-;;                       (font-spec :family chinese :size chinese-size))))
-;; (set-font "Monaco" "LiHei Pro" 16 18)
-
 (require 'virtualenvwrapper)
 (venv-initialize-interactive-shells) ;; if you want interactive shell support
 (venv-initialize-eshell) ;; if you want eshell support
@@ -69,8 +58,8 @@
 
 (global-set-key (kbd "C-v") 'scroll-up-half)
 (global-set-key (kbd "M-v") 'scroll-down-half)
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-p") 'backward-paragraph)
+;; (global-set-key (kbd "M-n") 'forward-paragraph)
+;; (global-set-key (kbd "M-p") 'backward-paragraph)
 
 ;; (global-set-key (kbd "M-n") '(lambda () (interactive) (scroll-down 1)))
 ;; (global-set-key (kbd "M-p") '(lambda () (interactive) (scroll-up 1)))
@@ -82,13 +71,11 @@
 
 (defun insert-pdb-debug ()
   (interactive)
-  (insert "import pdb; pdb.set_trace()"))
-
-(add-hook 'web-mode-hook 'html-mode)
-
-;; ;; flx-ido looks better with ido-vertical-mode
-;; (require 'ido-vertical-mode)
-;; (ido-vertical-mode)
+  (progn
+    (beginning-of-line)
+    (open-line 1)
+    (indent-for-tab-command)
+    (insert "import pdb; pdb.set_trace()")))
 
 (eval-after-load "org"
   '(progn
@@ -100,31 +87,17 @@
 
 
 (require 'zencoding-mode)
-(add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
-(smartparens-global-mode t)
+(add-hook 'html-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
+(require 'smartparens-config)
 
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)                 ; optional
 
 (scroll-bar-mode -1)
 
-(require 'goto-last-change) ;; download this package and install in load-path
-(global-set-key (kbd "C-.") 'goto-last-change)
-
-;; (global-set-key (kbd "C-c C-j") 'imenu)
-
 (setq scroll-preserve-screen-position 1)
 
 (global-set-key (kbd "C-M-m") 'projectile-compile-project)
-
-;; (defun move-to-end-and-new-line-with-indent (args)
-;;   (interactive)
-;;   (prog (move-end-of-line 1)
-;;         (newline-and-indent)))
-;; (global-set-key (kbd "C-M-return") 'move-to-end-and-new-line-with-indent)
-
-;; (add-hook 'before-save-hook
-;;           'delete-trailing-whitespace)
 
 (add-hook 'find-file-hook (lambda () (setq buffer-save-without-query t)))
 
@@ -137,24 +110,17 @@
 
 (add-hook 'term-mode-hook (lambda()
                             (yas-minor-mode -1)))
-;; (setq system-uses-terminfo nil)
 
-;; (add-hook 'compilation-mode-hook (lambda () (interactive) (end-of-buffer)))
 (setq projectile-switch-project-action 'projectile-dired)
 (global-set-key (kbd "M-.") 'projectile-find-tag)
-;; (global-set-key (kbd "M-.") 'helm-etags-select) 
 
-(define-key yas-minor-mode-map (kbd "C-,") 'er/expand-region)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
-;; (global-set-key (kbd "C-c f") 'projectile-find-file)
-;; (global-set-key (kbd "C-c r") 'projectile-recentf)
-;; (define-key projectile-mode-map (kbd "C-x C-f") 'projectile-find-file)
 
-(eval-after-load "sgml-mode"
+(eval-after-load "html-mode"
   '(progn
      (require 'tagedit)
      (tagedit-add-paredit-like-keybindings)
-     (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1)))))
+     (add-hook 'html-mode-hook (lambda () (tagedit-mode 1)))))
 
 (defun next-user-buffer ()
   "Switch to the next user buffer.
@@ -196,46 +162,18 @@ Emacs buffers are those whose name starts with *."
 (global-set-key (kbd "C-x C-n") 'next-user-buffer)
 (global-set-key (kbd "C-x C-p") 'previous-user-buffer)
 
-(custom-set-variables
- '(eclim-eclipse-dirs '("~/program/eclipse/")))
-(custom-set-variables
- '(eclim-executable "~/program/eclipse/eclim"))
-(require 'eclim)
-(global-eclim-mode)
-(require 'eclimd)
-(setq eclimd-default-workspace "~/Documents/eclipse_workspace/")
-(setq eclimd-wait-for-process nil)
-
-
-;; regular auto-complete initialization
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; add the emacs-eclim source
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
-
-
-(setq help-at-pt-display-when-idle t)
-(setq help-at-pt-timer-delay 0.1)
-(help-at-pt-set-timer)
-(setq eclim-autoupdate-problems nil)
-(setq eclim-problems-hl-errors nil)
-(define-key eclim-mode-map (kbd "C-c C-e d") 'eclim-java-show-documentation-for-current-element)
-
 (require 'shell-here)
 (global-set-key (kbd "C-c !") 'shell-here)
-(global-set-key (kbd "C-j") 'imenu)
-
-(require 'ac-emacs-eclim-source)
+(global-set-key (kbd "C-c i") 'imenu)
 
 (setq compilation-scroll-output 'first-error)
-(add-to-list 'auto-mode-alist '("\\.xml$" . sgml-mode))
+;; (add-to-list 'auto-mode-alist '("\\.xml$" . sgml-mode))
 (add-hook 'projectile-switch-project
           '(lambda () (interactive) (progn
                                      (tags-reset-tags-tables)
                                      (visit-tags-table (projectile-project-root)))))
-(global-set-key (kbd "M-.") 'find-tag)
+
+(global-set-key (kbd "M-.") 'projectile-find-tag)
 
 (require 'prelude-key-chord)
 
@@ -248,4 +186,76 @@ ath file name into the current buffer."
 (defun get-file-name ()
   (let ((file-name (file-name-sans-extension (buffer-name (window-buffer (minibuffer-selected-window))))))
     file-name))
+(global-set-key [f2] 'insert-file-name)
 
+;;vim like gd implement in emacs.
+(require 'highlight-symbol)
+(global-set-key [(control f3)] 'highlight-symbol-at-point)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+
+(add-to-list 'projectile-project-root-files "AndroidManifest.xml")
+(setq projectile-remember-window-configs t)
+
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (define-key dired-mode-map (kbd "^")
+              (lambda () (interactive) (find-alternate-file "..")))
+                                        ; was dired-up-directory
+            ))
+
+(global-set-key (kbd "C-c C-h e") 'helm-etags-select)
+(global-set-key (kbd "C-h j") 'javadoc-lookup)
+(global-set-key (kbd "C-c RET i") 'add-java-import)
+
+(require 'javadoc-lookup)
+(javadoc-add-roots "/Users/ccheng/program/adt-bundle-mac-x86_64-20130219/sdk/docs/reference")
+(javadoc-add-artifacts [com.squareup.dagger dagger "1.0.1"])
+
+(defun launch-android-logcat ()
+  (interactive)
+  (let ((log-buffer (get-buffer "*android-logcat*")))
+    (if log-buffer
+        (switch-to-buffer-other-window "*android-logcat*")
+      (android-logcat))))
+(global-set-key (kbd "C-c RET l") 'launch-android-logcat)
+
+;;; Make ansi-term won't hide bottom line when the content fill all the screen.
+(setq term-scroll-show-maximum-output 100)
+
+(global-set-key (kbd "C-x C-c") nil)
+(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+
+;;; Set the highlight color of theme
+(set-face-attribute 'region nil :background "#666")
+
+(require 'dired-single)
+
+(setq sql-user "root")
+(setq sql-password "aa")
+(setq sql-server "127.0.0.1")
+
+;; Start eshell or switch to it if it's active.
+(global-set-key (kbd "C-x m") 'eshell)
+
+;; Enable html mode for go template files. If found better mode for the template, replace it.
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
+
+;; kill preivous compilation without prompt.
+(add-hook 'compilation-start-hook 'kill-compilation)
+
+;; disable auto save feature when in tramp mode.
+(setq backup-enable-predicate
+      (lambda (name)
+        (and (normal-backup-enable-predicate name)
+             (not
+              (let ((method (file-remote-p name 'method)))
+                (when (stringp method)
+                  (member method '("su" "sudo"))))))))
+
+(global-set-key (kbd "C-c a L") 'org-timeline)
+
+(require 'goto-chg)
+(global-set-key (kbd "C-.") 'goto-last-change)
+(global-set-key (kbd "C-,") 'goto-last-change-reverse)
