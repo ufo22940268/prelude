@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: make_new_api
+# key: mapi
+# --
+class $0(BaseResource):
+
+    def get(self):
+        ${1:pass}
+
+    def post(self):
+        ${2:pass}

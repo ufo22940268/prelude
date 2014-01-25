@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_stdout
+# key: sysout
+# --
+System.out.println("--------------------" + $0 + "--------------------");

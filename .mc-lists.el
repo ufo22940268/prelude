@@ -4,8 +4,10 @@
 (setq mc/cmds-to-run-for-all
       '(
         async-shell-command
+        c-electric-brace
         c-electric-colon
         c-electric-delete-forward
+        c-electric-paren
         c-electric-semi&comma
         copy-to-register
         end-of-buffer
@@ -34,5 +36,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        markdown-exdent-or-delete
         org-self-insert-command
         ))

@@ -18,3 +18,4 @@ savefile/
 projectile-bookmarks.eld
 session*
 .cask
+/var/pcache/gh/gh-gist-api/bin/sh: /usr/bin/git: not found

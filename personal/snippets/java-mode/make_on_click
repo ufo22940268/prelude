@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: make_on_click
+# key: monclick
+# --
+@Override
+public void onClick(View view) {
+       $0
+}

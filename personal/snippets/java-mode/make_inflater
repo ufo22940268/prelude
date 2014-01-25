@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_inflater
+# key: minflater
+# --
+LayoutInflater.from($0).inflate(R.layout.$1, parent, false);

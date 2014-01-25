@@ -116,11 +116,7 @@
 
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
-(eval-after-load "html-mode"
-  '(progn
-     (require 'tagedit)
-     (tagedit-add-paredit-like-keybindings)
-     (add-hook 'html-mode-hook (lambda () (tagedit-mode 1)))))
+
 
 (defun next-user-buffer ()
   "Switch to the next user buffer.
@@ -228,7 +224,7 @@ ath file name into the current buffer."
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 ;;; Set the highlight color of theme
-(set-face-attribute 'region nil :background "#666")
+;; (set-face-attribute 'region nil :background "#666")
 
 (require 'dired-single)
 
@@ -243,7 +239,7 @@ ath file name into the current buffer."
 (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
 
 ;; kill preivous compilation without prompt.
-(add-hook 'compilation-start-hook 'kill-compilation)
+;; (add-hook 'compilation-start-hook 'kill-compilation)
 
 ;; disable auto save feature when in tramp mode.
 (setq backup-enable-predicate
@@ -259,3 +255,15 @@ ath file name into the current buffer."
 (require 'goto-chg)
 (global-set-key (kbd "C-.") 'goto-last-change)
 (global-set-key (kbd "C-,") 'goto-last-change-reverse)
+
+(eval-after-load "sgml-mode"
+  '(progn
+     (require 'tagedit)
+     (tagedit-add-paredit-like-keybindings)
+     (add-hook 'html-mode-hook (lambda () (tagedit-mode 1)))))
+
+(require 'nginx-mode)
+(global-unset-key (kbd "s-w"))
+(global-set-key "\M-Z" 'zap-up-to-char)
+(disable-theme 'zenburn)
+(load-theme 'molokai t)
