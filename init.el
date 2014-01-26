@@ -83,7 +83,7 @@ by Prelude.")
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
 
-;; the core stuff
+;; ;; the core stuff
 (require 'prelude-packages)
 (require 'prelude-ui)
 (require 'prelude-core)
@@ -113,4 +113,4 @@ by Prelude.")
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
-;;; init.el ends here
+;; ;;; init.el ends here

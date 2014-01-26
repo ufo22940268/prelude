@@ -267,3 +267,4 @@ ath file name into the current buffer."
 (global-set-key "\M-Z" 'zap-up-to-char)
 (disable-theme 'zenburn)
 (load-theme 'molokai t)
+(global-hl-line-mode -1)
