@@ -1,5 +1,4 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
+#contributor : Anders Bach Nielsen <abachn@abachn.net>
 #name : <td>...</td>
-#group : table
 # --
 <td$1>$2</td>

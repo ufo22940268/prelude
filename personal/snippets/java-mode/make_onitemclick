@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: make_onitemclick
+# key: monitemclick
+# --
+public void onItemClick(AdapterView parent, View view, int position, long id) {
+}
+

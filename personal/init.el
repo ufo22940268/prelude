@@ -112,8 +112,6 @@
                             (yas-minor-mode -1)))
 
 (setq projectile-switch-project-action 'projectile-dired)
-(global-set-key (kbd "M-.") 'projectile-find-tag)
-
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 
 
@@ -169,7 +167,7 @@ Emacs buffers are those whose name starts with *."
                                      (tags-reset-tags-tables)
                                      (visit-tags-table (projectile-project-root)))))
 
-(global-set-key (kbd "M-.") 'projectile-find-tag)
+;; (global-set-key (kbd "M-.") 'projectile-find-tag)
 
 (require 'prelude-key-chord)
 
@@ -182,6 +180,13 @@ ath file name into the current buffer."
 (defun get-file-name ()
   (let ((file-name (file-name-sans-extension (buffer-name (window-buffer (minibuffer-selected-window))))))
     file-name))
+
+(defun copy-file-name ()
+  (interactive)
+  (let ((file-name (get-file-name)) )
+    (kill-new file-name)
+    (message "success copy file name '%s' to the clipboard." file-name)))
+
 (global-set-key [f2] 'insert-file-name)
 
 ;;vim like gd implement in emacs.
@@ -213,9 +218,10 @@ ath file name into the current buffer."
   (interactive)
   (let ((log-buffer (get-buffer "*android-logcat*")))
     (if log-buffer
-        (switch-to-buffer-other-window "*android-logcat*")
+        (switch-to-buffer "*android-logcat*")
+      (shell-command "adb logcat -c")
       (android-logcat))))
-(global-set-key (kbd "C-c RET l") 'launch-android-logcat)
+(global-set-key (kbd "C-c v l") 'launch-android-logcat)
 
 ;;; Make ansi-term won't hide bottom line when the content fill all the screen.
 (setq term-scroll-show-maximum-output 100)
@@ -237,6 +243,7 @@ ath file name into the current buffer."
 
 ;; Enable html mode for go template files. If found better mode for the template, replace it.
 (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.xml\\'" . html-mode))
 
 ;; kill preivous compilation without prompt.
 ;; (add-hook 'compilation-start-hook 'kill-compilation)
@@ -268,3 +275,13 @@ ath file name into the current buffer."
 (disable-theme 'zenburn)
 (load-theme 'molokai t)
 (global-hl-line-mode -1)
+
+(global-set-key (kbd "s-p") 'highlight-symbol-prev)
+(global-set-key (kbd "s-n") 'highlight-symbol-next)
+(define-key progn)
+
+(setq yas-new-snippet-default "# -*- mode: snippet -*-
+# name: $1
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+p# --
+$0")

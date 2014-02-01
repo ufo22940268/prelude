@@ -14,6 +14,8 @@
         kill-region
         kill-sexp
         mark-sexp
+        markdown-insert-code
+        mouse-buffer-menu
         nxml-electric-slash
         org-delete-char
         org-end-of-line
@@ -29,6 +31,7 @@
         sp-forward-sexp
         sp-remove-active-pair-overlay
         tagedit-insert-equal
+        tagedit-insert-quote
         toggle-input-method
         transpose-words
         yas-expand

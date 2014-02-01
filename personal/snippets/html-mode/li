@@ -1,5 +1,4 @@
-#contributor : Jimmy Wu <frozenthrone88@gmail.com>
+#contributor : Anders Bach Nielsen <abachn@abachn.net>
 #name : <li>...</li>
-#group : list
 # --
 <li>$1</li>

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_myapp_schema
+# key: mmyapp
+# --
+xmlns:myapp="http://schemas.android.com/apk/res-auto"

@@ -68,7 +68,6 @@
     (define-key map (kbd "C-c S") 'prelude-find-shell-init-file)
     ;; make some use of the Super key
     (define-key map [?\s-d] 'projectile-find-dir)
-    (define-key map [?\s-p] 'projectile-switch-project)
     (define-key map [?\s-f] 'projectile-find-file)
     (define-key map [?\s-g] 'projectile-grep)
 
