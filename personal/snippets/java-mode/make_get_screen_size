@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: make_get_screen_size
+# key: mscreensize
+# --
+Display display = getWindowManager().getDefaultDisplay();
+Point size = new Point();
+display.getSize(size);
+int width = size.x;
+int height = size.y;

@@ -29,7 +29,7 @@
 (setq mac-option-modifier 'super)
 
 ;; (global-set-key (kbd "C-x C-e") 'eval-buffer)
-(global-set-key (kbd "C-c v p") 'view-personal-config)
+(global-set-key (kbd "C-c v r") 'view-personal-config)
 (global-set-key (kbd "C-M-/") 'my-expand-file-name-at-point)
 
 (require 'multiple-cursors)
@@ -69,13 +69,13 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/inf-mongo-20130305.127/")
 (require 'inf-mongo)
 
-(defun insert-pdb-debug ()
-  (interactive)
-  (progn
-    (beginning-of-line)
-    (open-line 1)
-    (indent-for-tab-command)
-    (insert "import pdb; pdb.set_trace()")))
+;; (defun insert-pdb-debug ()
+;;   (interactive)
+;;   (progn
+;;     (beginning-of-line)
+;;     (open-line 1)
+;;     (indent-for-tab-command)
+;;     (insert "import pdb; pdb.set_trace()")))
 
 (eval-after-load "org"
   '(progn
@@ -95,7 +95,7 @@
 
 (scroll-bar-mode -1)
 
-(setq scroll-preserve-screen-position 1)
+;; (setq scroll-preserve-screen-position nil)
 
 (global-set-key (kbd "C-M-m") 'projectile-compile-project)
 
@@ -151,21 +151,28 @@ Emacs buffers are those whose name starts with *."
   (let ((i 0))
     (while (and (not (string-match "^*" (buffer-name))) (< i 50))
       (setq i (1+ i)) (previous-buffer) )))
-(global-set-key (kbd "C-x n") 'next-user-buffer)
-(global-set-key (kbd "C-x p") 'previous-user-buffer)
-(global-set-key (kbd "C-x C-n") 'next-user-buffer)
-(global-set-key (kbd "C-x C-p") 'previous-user-buffer)
+;; (global-set-key (kbd "C-x n") 'next-buffer)
+;; (global-set-key (kbd "C-x p") 'previous-buffer)
+;; (global-set-key (kbd "C-x C-n") 'next-user-buffer)
+;; (global-set-key (kbd "C-x C-p") 'previous-user-buffer)
 
 (require 'shell-here)
 (global-set-key (kbd "C-c !") 'shell-here)
+
+(autoload 'idomenu "idomenu" nil t)
+
+
+(defadvice ido-imenu (before push-mark activate)
+  (push-mark))
+;; (global-set-key (kbd "C-c i") 'ido-imenu)
 (global-set-key (kbd "C-c i") 'imenu)
 
 (setq compilation-scroll-output 'first-error)
 ;; (add-to-list 'auto-mode-alist '("\\.xml$" . sgml-mode))
 (add-hook 'projectile-switch-project
           '(lambda () (interactive) (progn
-                                     (tags-reset-tags-tables)
-                                     (visit-tags-table (projectile-project-root)))))
+                                      (tags-reset-tags-tables)
+                                      (visit-tags-table (projectile-project-root)))))
 
 ;; (global-set-key (kbd "M-.") 'projectile-find-tag)
 
@@ -196,15 +203,18 @@ ath file name into the current buffer."
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
 
-(add-to-list 'projectile-project-root-files "AndroidManifest.xml")
+;; (add-to-list 'projectile-project-root-files "AndroidManifest.xml")
+(add-to-list 'projectile-project-root-files "build.gradle")
+;; (setq projectile-project-root-files (delete "AndroidManifest.xml" projectile-project-root-files))
 (setq projectile-remember-window-configs t)
 
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key dired-mode-map (kbd "^")
-              (lambda () (interactive) (find-alternate-file "..")))
-                                        ; was dired-up-directory
-            ))
+;; (add-hook 'dired-mode-hook
+;;           (lambda ()
+;;           (lambda ()
+;;             (define-key dired-mode-map (kbd "^")
+;;               (lambda () (interactive) (find-alternate-file "..")))
+;;                                         ; was dired-up-directory
+;;             ))
 
 (global-set-key (kbd "C-c C-h e") 'helm-etags-select)
 (global-set-key (kbd "C-h j") 'javadoc-lookup)
@@ -230,7 +240,7 @@ ath file name into the current buffer."
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 
 ;;; Set the highlight color of theme
-;; (set-face-attribute 'region nil :background "#666")
+(set-face-attribute 'region nil :background "#666")
 
 (require 'dired-single)
 
@@ -244,6 +254,7 @@ ath file name into the current buffer."
 ;; Enable html mode for go template files. If found better mode for the template, replace it.
 (add-to-list 'auto-mode-alist '("\\.tmpl\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.xml\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . html-mode))
 
 ;; kill preivous compilation without prompt.
 ;; (add-hook 'compilation-start-hook 'kill-compilation)
@@ -272,16 +283,51 @@ ath file name into the current buffer."
 (require 'nginx-mode)
 (global-unset-key (kbd "s-w"))
 (global-set-key "\M-Z" 'zap-up-to-char)
-(disable-theme 'zenburn)
-(load-theme 'molokai t)
-(global-hl-line-mode -1)
+
+;; (disable-theme 'zenburn)
+;; (load-theme 'molokai t)
+;; (global-hl-line-mode -1)
 
 (global-set-key (kbd "s-p") 'highlight-symbol-prev)
 (global-set-key (kbd "s-n") 'highlight-symbol-next)
-(define-key progn)
 
 (setq yas-new-snippet-default "# -*- mode: snippet -*-
 # name: $1
 # key: ${2:${1:$(yas--key-from-desc yas-text)}}
 p# --
 $0")
+
+(global-set-key (kbd "C-c v d") 'jedi:show-doc)
+
+(prelude-swap-meta-and-super)
+(setq set-mark-command-repeat-pop 1)
+(global-set-key (kbd "M-m") 'iy-go-to-char)
+
+(defun switch-to-scratch()
+  (interactive)
+  (switch-to-buffer-other-window "*scratch*"))
+(global-set-key (kbd "C-c v s") 'switch-to-scratch)
+(global-set-key (kbd "M-.") 'projectile-find-tag)
+
+;; set gradle compilation regexp
+(add-to-list 
+ 'compilation-error-regexp-alist
+ 'gradle)
+
+
+(add-to-list 
+ 'compilation-error-regexp-alist-alist
+ '(gradle "^:compileDebugJava\\(.*?\\):\\([0-9]+?\\).*" 1 2))
+
+;; (add-to-list 
+;;  'compilation-error-regexp-alist-alist
+;;  '(gradle-res "^:processDebugResources(.*?\\):\\([0-9]+?\\).*" 1 2))
+
+
+
+(add-hook 'html-mode-hook
+          (lambda ()
+            ;; Default indentation is usually 2 spaces, changing to 4.
+            (set (make-local-variable 'sgml-basic-offset) 4)))
+
+(prelude-swap-meta-and-super)

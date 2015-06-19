@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: monactivitycreated
+# key: monactivitycreated
+# --
+@Override
+public void onActivityCreated(Bundle savedInstanceState) {
+       super.onActivityCreated(savedInstanceState);
+       $0
+}

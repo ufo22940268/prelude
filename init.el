@@ -103,14 +103,13 @@ by Prelude.")
 (setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
 
 ;; load the personal settings (this includes `custom-file')
-(when (file-exists-p prelude-personal-dir)
-  (message "Loading personal configuration files in %s..." prelude-personal-dir)
-  (mapc 'load (directory-files prelude-personal-dir 't "^[^#].*el$")))
+ (when (file-exists-p prelude-personal-dir)
+   (message "Loading personal configuration files in %s..." prelude-personal-dir)
+   (mapc 'load (directory-files prelude-personal-dir 't "^[^#].*el$")))
 
 (message "Prelude is ready to do thy bidding, Master %s!" current-user)
 
 (prelude-eval-after-init
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
-
 ;; ;;; init.el ends here

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: mcreateview
+# key: mcreateview
+# --
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+       $0
+}
